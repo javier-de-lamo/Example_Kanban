@@ -4,11 +4,50 @@
         <name>KanbanApi</name>
     </assembly>
     <members>
+        <member name="T:KanbanApi.Controllers.ToDo">
+            <summary>
+                /api/todo endpoint
+            </summary>
+        </member>
+        <member name="M:KanbanApi.Controllers.ToDo.#ctor(Microsoft.Extensions.Logging.ILogger{KanbanApi.Controllers.ToDo},AppCore.Interfaces.ITaskService)">
+            <summary>
+                Needed services are injected in the constructor
+            </summary>
+        </member>
         <member name="M:KanbanApi.Controllers.ToDo.Get">
             <summary>
-            Get all To-Do Tasks
+                Get all To-Do Tasks
             </summary>
             <returns>List of To-Do Task</returns>
+        </member>
+        <member name="M:KanbanApi.Controllers.ToDo.Get(System.Int32)">
+            <summary>
+                Get a Task by its Id
+            </summary>
+            <param name="id">id of Task</param>
+            <returns>Task Item with the provided Id, if it exist</returns>
+        </member>
+        <member name="M:KanbanApi.Controllers.ToDo.Delete(System.Int32)">
+            <summary>
+                Delete a Task by its Id
+            </summary>
+            <param name="id">Id of the Task to be deleted</param>
+            <returns>Result of Deletion</returns>
+        </member>
+        <member name="M:KanbanApi.Controllers.ToDo.Post(AppCore.DTOs.TaskItemDto)">
+            <summary>
+                Create a new To-Do Task
+            </summary>
+            <param name="taskDto">Only Task Detail is neccesary, all other fields are ignored</param>
+            <returns>The task just created</returns>
+        </member>
+        <member name="M:KanbanApi.Controllers.ToDo.Put(System.Int32,AppCore.DTOs.TaskItemDto)">
+            <summary>
+                Update a To-Do Task
+            </summary>
+            <param name="id">Id of task is provided by endpoint</param>
+            <param name="taskDto">Details and Status of a Task can be updated. Id cannot be updated.</param>
+            <returns>Result of Update</returns>
         </member>
     </members>
 </doc>
