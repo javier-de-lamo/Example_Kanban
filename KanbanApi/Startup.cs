@@ -1,5 +1,7 @@
 namespace KanbanApi
 {
+    using AutoMapper;
+    using Infraestructure.AutoMapper;
     using Infraestructure.Data.Context;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -17,8 +19,12 @@ namespace KanbanApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
         {
+            // Entity Framework Config
             services.AddDbContext< KanbanDbContext >
                 ( options => options.UseSqlServer( this.Configuration.GetConnectionString( "DefaultConnection" ) ) );
+
+            // Auto Mapper Config
+            services.AddAutoMapper( cfg => cfg.AddProfile< MappingProfile >( ), typeof( Startup ) );
 
             services.AddControllers( );
         }
