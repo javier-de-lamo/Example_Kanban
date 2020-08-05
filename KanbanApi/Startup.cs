@@ -1,8 +1,11 @@
 namespace KanbanApi
 {
+    using AppCore.Interfaces;
+    using AppCore.Services;
     using AutoMapper;
     using Infraestructure.AutoMapper;
     using Infraestructure.Data.Context;
+    using Infraestructure.Data.Repository;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -25,6 +28,9 @@ namespace KanbanApi
 
             // Auto Mapper Config
             services.AddAutoMapper( cfg => cfg.AddProfile< MappingProfile >( ), typeof( Startup ) );
+
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ITaskItemRepo, TaskItemRepo>();
 
             services.AddControllers( );
         }
