@@ -9,6 +9,6 @@
 
         [ Required ] public string Details { get; set; }
 
-        [ Required ] public Status CurrentStatus { get; set; }
+        public Status CurrentStatus { get; set; }
     }
 }

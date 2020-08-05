@@ -10,7 +10,7 @@
 
         [ Required ] public string Details { get; set; }
 
-        [ Required ] public Status CurrentStatus { get; set; }
+        public Status CurrentStatus { get; set; }
 
         public DateTime Created     { get; set; }
         public DateTime LastUpdated { get; set; }

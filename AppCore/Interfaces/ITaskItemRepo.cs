@@ -31,9 +31,9 @@
         /// <summary>
         ///     Remove a Task from the database
         /// </summary>
-        /// <param name="itemDto">Item DTO with id</param>
+        /// <param name="id">Item id to remove</param>
         /// <returns>Number of deleted records. 1 means it was deleted sucessfully. 0 means nothing got deleted.</returns>
-        Task< int > RemoveTaskAsync( TaskItemDto itemDto );
+        Task< int > RemoveTaskAsync( int id );
 
         /// <summary>
         ///     Get a list of task with have a concrete Status

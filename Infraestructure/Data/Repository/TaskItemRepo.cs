@@ -42,6 +42,8 @@
 
             if( item != null )
             {
+                item.Details                 = itemDto.Details;
+                item.CurrentStatus           = itemDto.CurrentStatus;
                 item.LastUpdated             = DateTime.Now;
                 _context.Entry( item ).State = EntityState.Modified;
                 return await this.SaveAsync( );
@@ -69,13 +71,19 @@
         /// <summary>
         ///     Remove a Task from the database
         /// </summary>
-        /// <param name="itemDto">Item DTO with id</param>
+        /// <param name="id">Item id to remove</param>
         /// <returns>Number of deleted records. 1 means it was deleted sucessfully. 0 means nothing got deleted.</returns>
-        public async Task< int > RemoveTaskAsync( TaskItemDto itemDto )
+        public async Task< int > RemoveTaskAsync( int id )
         {
-            var item = _mapper.Map< TaskItem >( itemDto );
-            _context.TaskItems.Remove( item );
-            return await this.SaveAsync( );
+            var item = await this.GetTaskEntityByIdAsync( id );
+
+            if( item != null )
+            {
+                _context.TaskItems.Remove( item );
+                return await this.SaveAsync( );
+            }
+
+            return 0;
         }
 
         /// <summary>

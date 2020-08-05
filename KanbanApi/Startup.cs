@@ -29,8 +29,8 @@ namespace KanbanApi
             // Auto Mapper Config
             services.AddAutoMapper( cfg => cfg.AddProfile< MappingProfile >( ), typeof( Startup ) );
 
-            services.AddScoped<ITaskService, TaskService>();
-            services.AddScoped<ITaskItemRepo, TaskItemRepo>();
+            services.AddScoped< ITaskService, TaskService >( );
+            services.AddScoped< ITaskItemRepo, TaskItemRepo >( );
 
             services.AddControllers( );
         }
