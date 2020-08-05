@@ -21,7 +21,10 @@
             _service = service;
         }
 
-
+        /// <summary>
+        /// Get all To-Do Tasks
+        /// </summary>
+        /// <returns>List of To-Do Task</returns>
         [ HttpGet( Name = "GetAllToDoTask" ) ]
         public async Task< ActionResult< List< TaskItemDto > > > Get( )
         {

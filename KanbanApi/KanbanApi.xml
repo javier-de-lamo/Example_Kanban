@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KanbanApi</name>
+    </assembly>
+    <members>
+        <member name="M:KanbanApi.Controllers.ToDo.Get">
+            <summary>
+            Get all To-Do Tasks
+            </summary>
+            <returns>List of To-Do Task</returns>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
+
+[ assembly: ApiConventionType( typeof( DefaultApiConventions ) ) ]
+
 namespace KanbanApi
 {
+    using System;
+    using System.IO;
+    using System.Reflection;
     using AppCore.Interfaces;
     using AppCore.Services;
     using AutoMapper;
@@ -36,7 +43,26 @@ namespace KanbanApi
 
             // Configure Swagger 
             services.AddSwaggerGen
-                ( config => config.SwaggerDoc( "v1", new OpenApiInfo { Version = "V1", Title = "Kanban Web Api", } ) );
+            (
+                config =>
+                {
+                    config.SwaggerDoc
+                    (
+                        "v1",
+                        new OpenApiInfo
+                        {
+                            Version     = "V1",
+                            Title       = "Simple Kanban Web API",
+                            Description = "Simple Kanban Web API",
+                            License     = new OpenApiLicense { Name = "MIT", Url = new Uri( "http://bfy.tw/4nqh" ) }
+                        }
+                    );
+
+                    var xmlFile = $"{Assembly.GetExecutingAssembly( ).GetName( ).Name}.xml";
+                    var xmlPath = Path.Combine( AppContext.BaseDirectory, xmlFile );
+                    config.IncludeXmlComments( xmlPath );
+                }
+            );
 
             services.AddControllers( );
         }
