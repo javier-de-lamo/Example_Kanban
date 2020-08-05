@@ -12,6 +12,7 @@ namespace KanbanApi
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
 
     public class Startup
     {
@@ -29,8 +30,13 @@ namespace KanbanApi
             // Auto Mapper Config
             services.AddAutoMapper( cfg => cfg.AddProfile< MappingProfile >( ), typeof( Startup ) );
 
+            // Dependency injection
             services.AddScoped< ITaskService, TaskService >( );
             services.AddScoped< ITaskItemRepo, TaskItemRepo >( );
+
+            // Configure Swagger 
+            services.AddSwaggerGen
+                ( config => config.SwaggerDoc( "v1", new OpenApiInfo { Version = "V1", Title = "Kanban Web Api", } ) );
 
             services.AddControllers( );
         }
@@ -38,6 +44,10 @@ namespace KanbanApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
         {
+            app.UseSwagger( );
+
+            app.UseSwaggerUI( config => config.SwaggerEndpoint( "/swagger/v1/swagger.json", "API V1" ) );
+
             if( env.IsDevelopment( ) ) { app.UseDeveloperExceptionPage( ); }
 
             app.UseHttpsRedirection( );
