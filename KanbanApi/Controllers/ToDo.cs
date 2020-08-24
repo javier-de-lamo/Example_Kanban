@@ -60,9 +60,9 @@
         {
             _logger.LogInformation( "Delete Task by ID = {id}" );
 
-            int result = await _service.RemoveTaskAsync( id );
+            var deletedSucessfully = await _service.RemoveTaskAsync( id );
 
-            if( result == 1 ) { return this.NoContent( ); }
+            if( deletedSucessfully ) { return this.NoContent( ); }
 
             return this.NotFound( );
         }
@@ -95,9 +95,9 @@
 
             taskDto.Id = id;
 
-            var result = await _service.UpdateTaskAsync( taskDto );
+            var updatedSucessfully = await _service.UpdateTaskAsync( taskDto );
 
-            if( result == 1 ) { return this.Ok( ); }
+            if( updatedSucessfully ) { return this.Ok( ); }
 
             return this.NotFound( );
         }

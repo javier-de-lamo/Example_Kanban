@@ -41,7 +41,7 @@ namespace KanbanApi
             services.AddScoped< ITaskService, TaskService >( );
             services.AddScoped< ITaskItemRepo, TaskItemRepo >( );
 
-            // Configure Swagger 
+            // Configure Swagger
             services.AddSwaggerGen
             (
                 config =>
@@ -80,7 +80,7 @@ namespace KanbanApi
 
             app.UseRouting( );
 
-            //app.UseAuthorization( );
+            app.UseAuthorization( );
 
             app.UseEndpoints( endpoints => endpoints.MapControllers( ) );
         }

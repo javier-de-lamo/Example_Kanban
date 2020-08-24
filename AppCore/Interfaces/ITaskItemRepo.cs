@@ -18,8 +18,8 @@
         ///     Updates an item in the database
         /// </summary>
         /// <param name="itemDto">Updated item DTO to be saved</param>
-        /// <returns>Number of updated records. 1 means it was sucessfull, 0 means nothing got updated</returns>
-        Task< int > UpdateTaskAsync( TaskItemDto itemDto );
+        /// <returns>A bool stating if the record was updated sucesfully</returns>
+        Task< bool > UpdateTaskAsync( TaskItemDto itemDto );
 
         /// <summary>
         ///     Create a new task in the database
@@ -32,8 +32,8 @@
         ///     Remove a Task from the database
         /// </summary>
         /// <param name="id">Item id to remove</param>
-        /// <returns>Number of deleted records. 1 means it was deleted sucessfully. 0 means nothing got deleted.</returns>
-        Task< int > RemoveTaskAsync( int id );
+        /// <returns>A bool stating if the record was deleted sucesfully</returns>
+        Task< bool > RemoveTaskAsync( int id );
 
         /// <summary>
         ///     Get a list of task with have a concrete Status

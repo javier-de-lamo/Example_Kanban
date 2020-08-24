@@ -41,14 +41,14 @@
         ///     Remove a Task
         /// </summary>
         /// <param name="id">Task id to remove</param>
-        /// <returns>Number of deleted Task. 1 means it was deleted sucessfully. 0 means nothing got deleted.</returns>
-        public async Task< int > RemoveTaskAsync( int id ) => await _repository.RemoveTaskAsync( id );
+        /// <returns>A bool stating if the record was deleted sucesfully</returns>
+        public async Task< bool > RemoveTaskAsync( int id ) => await _repository.RemoveTaskAsync( id );
 
         /// <summary>
         ///     Updates a Task
         /// </summary>
         /// <param name="itemDto">Updated Task DTO</param>
-        /// <returns>Number of updated records. 1 means it was sucessfull, 0 means nothing got updated</returns>
-        public Task< int > UpdateTaskAsync( TaskItemDto itemDto ) => _repository.UpdateTaskAsync( itemDto );
+        /// <returns>A bool stating if the record was updated sucesfully</returns>
+        public Task< bool > UpdateTaskAsync( TaskItemDto itemDto ) => _repository.UpdateTaskAsync( itemDto );
     }
 }

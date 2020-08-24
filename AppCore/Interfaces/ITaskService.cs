@@ -32,14 +32,14 @@
         ///     Remove a Task
         /// </summary>
         /// <param name="id">Task id to remove</param>
-        /// <returns>Number of deleted Task. 1 means it was deleted sucessfully. 0 means nothing got deleted.</returns>
-        Task< int > RemoveTaskAsync( int id );
+        /// <returns>A bool stating if the record was deleted sucesfully</returns>
+        Task< bool > RemoveTaskAsync( int id );
 
         /// <summary>
         ///     Updates a Task
         /// </summary>
         /// <param name="itemDto">Updated Task DTO</param>
-        /// <returns>Number of updated records. 1 means it was sucessfull, 0 means nothing got updated</returns>
-        Task< int > UpdateTaskAsync( TaskItemDto itemDto );
+        /// <returns>A bool stating if the record was updated sucesfully</returns>
+        Task< bool > UpdateTaskAsync( TaskItemDto itemDto );
     }
 }
