@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
+// With this, Swagger can properly show the status codes returned from all the endpoints in the Controllers
 [ assembly: ApiConventionType( typeof( DefaultApiConventions ) ) ]
 
 namespace KanbanApi
@@ -15,6 +16,7 @@ namespace KanbanApi
     using Infraestructure.Data.Repository;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -23,11 +25,14 @@ namespace KanbanApi
 
     public class Startup
     {
+        /// <summary>
+        /// Contains configuration settings. By default, it contains the ones in appsettings.json
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         public Startup( IConfiguration configuration ) => this.Configuration = configuration;
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
         {
             // Entity Framework Config
@@ -67,16 +72,18 @@ namespace KanbanApi
             services.AddControllers( );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
         {
+            // Add Swagger to the pipeline
             app.UseSwagger( );
-
+            // Add Swagger endpoint to the list of endpoints
             app.UseSwaggerUI( config => config.SwaggerEndpoint( "/swagger/v1/swagger.json", "API V1" ) );
 
             if( env.IsDevelopment( ) ) { app.UseDeveloperExceptionPage( ); }
 
             app.UseHttpsRedirection( );
+
 
             app.UseRouting( );
 
