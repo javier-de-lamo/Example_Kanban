@@ -9,7 +9,7 @@
                 /api/todo endpoint
             </summary>
         </member>
-        <member name="M:KanbanApi.Controllers.ToDoController.#ctor(Microsoft.Extensions.Logging.ILogger{KanbanApi.Controllers.ToDoController},AppCore.Interfaces.ITaskService)">
+        <member name="M:KanbanApi.Controllers.ToDoController.#ctor(Microsoft.Extensions.Logging.ILogger{KanbanApi.Controllers.ToDoController},AppCore.Interfaces.IToDoService)">
             <summary>
                 Needed services are injected in the constructor
             </summary>
@@ -34,11 +34,11 @@
             <param name="id">Id of the Task to be deleted</param>
             <returns>Result of Deletion</returns>
         </member>
-        <member name="M:KanbanApi.Controllers.ToDoController.Post(AppCore.DTOs.TaskItemDto)">
+        <member name="M:KanbanApi.Controllers.ToDoController.Post(AppCore.DTOs.NewTaskItemDto)">
             <summary>
                 Create a new To-Do Task
             </summary>
-            <param name="taskDto">Only Task Detail is neccesary, all other fields are ignored</param>
+            <param name="newTaskDto">Only Task Detail is neccesary, all other fields are ignored</param>
             <returns>The task just created</returns>
         </member>
         <member name="M:KanbanApi.Controllers.ToDoController.Put(System.Int32,AppCore.DTOs.TaskItemDto)">
@@ -51,7 +51,7 @@
         </member>
         <member name="P:KanbanApi.Startup.Configuration">
             <summary>
-            Contains configuration settings. By default, it contains the ones in appsettings.json
+                Contains configuration settings. By default, it contains the ones in appsettings.json
             </summary>
         </member>
         <member name="M:KanbanApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
@@ -59,6 +59,11 @@
         </member>
         <member name="M:KanbanApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        </member>
+        <member name="T:KanbanApi.Swagger.ConfigureSwagger">
+            <summary>
+                Extends IServiceCollection to configure Swagger and mantain a clean Startur.cs class
+            </summary>
         </member>
     </members>
 </doc>
