@@ -18,7 +18,7 @@
             <summary>
                 Get all To-Do Tasks
             </summary>
-            <returns>List of To-Do Task</returns>
+            <returns>List of To-Do Items</returns>
         </member>
         <member name="M:KanbanApi.Controllers.ToDoController.Get(System.Int32)">
             <summary>
@@ -49,6 +49,11 @@
             <param name="taskDto">Details and Status of a Task can be updated. Id cannot be updated.</param>
             <returns>Result of Update</returns>
         </member>
+        <member name="T:KanbanApi.MiddleWare.ConfigureSwagger">
+            <summary>
+                Extends IServiceCollection to configure Swagger and mantain a clean Startur.cs class
+            </summary>
+        </member>
         <member name="P:KanbanApi.Startup.Configuration">
             <summary>
                 Contains configuration settings. By default, it contains the ones in appsettings.json
@@ -59,11 +64,6 @@
         </member>
         <member name="M:KanbanApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        </member>
-        <member name="T:KanbanApi.Swagger.ConfigureSwagger">
-            <summary>
-                Extends IServiceCollection to configure Swagger and mantain a clean Startur.cs class
-            </summary>
         </member>
     </members>
 </doc>

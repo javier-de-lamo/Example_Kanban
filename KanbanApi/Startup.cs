@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 // With this, Swagger can properly show the status codes returned from all the endpoints in the Controllers
-[assembly: ApiConventionType( typeof( DefaultApiConventions ) )]
+[ assembly: ApiConventionType( typeof( DefaultApiConventions ) ) ]
 
 namespace KanbanApi
 {
@@ -12,7 +12,7 @@ namespace KanbanApi
     using Infraestructure.AutoMapper;
     using Infraestructure.Data.Context;
     using Infraestructure.Data.Repository;
-    using KanbanApi.Swagger;
+    using KanbanApi.MiddleWare;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -33,7 +33,8 @@ namespace KanbanApi
         public void ConfigureServices( IServiceCollection services )
         {
             // Entity Framework Config
-            services.AddDbContext< KanbanDbContext >( options => options.UseSqlServer( this.Configuration.GetConnectionString( "DefaultConnection" ) ) );
+            services.AddDbContext< KanbanDbContext >
+                ( options => options.UseSqlServer( this.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
             // Auto Mapper Config
             services.AddAutoMapper( cfg => cfg.AddProfile< MappingProfile >( ), typeof( Startup ) );
@@ -44,6 +45,9 @@ namespace KanbanApi
 
             // Configure Swagger
             services.AddCustomSwagger( );
+
+            // Configure Cors
+            services.AddCustomCors( );
 
             // Swagger will show enums as string using this option
             services.AddControllers( )
@@ -60,6 +64,8 @@ namespace KanbanApi
 
             app.UseHttpsRedirection( );
 
+            // Add Cors policy
+            app.UseCustomCors( );
 
             app.UseRouting( );
 

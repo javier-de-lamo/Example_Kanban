@@ -1,4 +1,4 @@
-﻿namespace KanbanApi.Swagger
+﻿namespace KanbanApi.MiddleWare
 {
     using System;
     using System.IO;
@@ -23,10 +23,10 @@
                         "v1",
                         new OpenApiInfo
                         {
-                            Version = "V1",
-                            Title = "Simple Kanban Web API",
+                            Version     = "V1",
+                            Title       = "Simple Kanban Web API",
                             Description = "Simple ASP.NET API example, using a Kanban board",
-                            License = new OpenApiLicense { Name = "MIT", Url = new Uri( "http://bfy.tw/4nqh" ) },
+                            License     = new OpenApiLicense { Name = "MIT", Url = new Uri( "http://bfy.tw/4nqh" ) },
                         }
                     );
 
